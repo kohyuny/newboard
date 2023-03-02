@@ -23,15 +23,19 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-
+            <th:block th:each="list: ${list}">
+                <tr>
+                    <td><span th:text="${list.id}"></span></td>
+                    <td><a th:href="@{|/detail/${list.id}|}"><span th:text="${list.title}"></span></a> </td>
+                    <td><span th:text="${list.userid}"></span></td>
+                    <td><span th:text="${list.cnt}"></span></td>
+                </tr>
+            </th:block>
             </tbody>
         </table>
+        <div class="d-flex justify-content-end">
+            <button type="button" class="btn btn-danger" th:onclick="|location.href='@{/register}'|">등록</button>
+        </div>
     </div>
     <div class="col-4"></div>
 </div>

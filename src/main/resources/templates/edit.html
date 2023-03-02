@@ -16,24 +16,26 @@
   <div class="col-4"></div>
   <div class="col-4">
     <h1>글수정</h1>
-    <form action="">
+    <form th:action="@{/edit}" th:method="post">
       <div class="mb-3">
         <label for="exampleFormControlInput" class="form-label">userid</label>
-        <input type="text" class="form-control" id="exampleFormControlInput" placeholder="userid" name="userid" readonly>
+        <input type="text" class="form-control" id="exampleFormControlInput" placeholder="userid" name="userid" readonly th:value="${articleDTO.userid}">
       </div>
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">title</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="title" name="title">
+        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="title" name="title" th:value="${articleDTO.title}">
       </div>
       <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">content</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content"></textarea>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content" th:text="${articleDTO.content}"></textarea>
       </div>
+      <input type="hidden" class="form-control" name="id" th:value="${articleDTO.id}">
       <div class="d-flex justify-content-end grid gap-3">
         <button type="reset" class="btn btn-danger" >초기화</button>
         <button type="submit" class="btn btn-danger  ">수정</button>
       </div>
     </form>
+
   </div>
   <div class="col-4"></div>
 </div>

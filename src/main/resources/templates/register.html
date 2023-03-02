@@ -16,7 +16,7 @@
   <div class="col-4"></div>
   <div class="col-4">
     <h1>글등록</h1>
-    <form action="">
+    <form th:action="@{/register}" th:method="post">
       <div class="mb-3">
         <label for="exampleFormControlInput" class="form-label">userid</label>
         <input type="text" class="form-control" id="exampleFormControlInput" placeholder="userid" name="userid">

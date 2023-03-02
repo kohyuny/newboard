@@ -16,32 +16,41 @@
     <div class="col-4"></div>
     <div class="col-4">
         <h1>상세보기</h1>
-        <th:block th:each="list : ${list}">
+
             <div class="mb-3">
                 <label for="regdate" class="form-label">regdate</label>
-                <input type="text" class="form-control" id="regdate" th:value="${list.regdate}" name="regdate" readonly>
+                <input type="text" class="form-control" id="regdate" th:value="${articleDTO.regdate}" name="regdate" readonly>
             </div>
             <div class="mb-3">
                 <label for="moddate" class="form-label">moddate</label>
-                <input type="text" class="form-control" id="moddate" th:value="${list.moddate}" name="moddate" readonly>
+                <input type="text" class="form-control" id="moddate" th:value="${articleDTO.moddate}" name="moddate" readonly>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput" class="form-label">userid</label>
-                <input type="text" class="form-control" id="exampleFormControlInput" th:value="${list.userid}" name="userid" readonly>
+                <input type="text" class="form-control" id="exampleFormControlInput" th:value="${articleDTO.userid}" name="userid" readonly>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">title</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" th:value="${list.title}" name="title"readonly>
+                <input type="text" class="form-control" id="exampleFormControlInput1" th:value="${articleDTO.title}" name="title"readonly>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">content</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content" readonly>${list.content}</textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content" readonly th:text="${articleDTO.content}"></textarea>
             </div>
             <div class="d-flex justify-content-end grid gap-3">
-                <button type="button" class="btn btn-primary" th:onclick="location.href ='@{|/edit/${list.id}|}'" >글수정</button>
+                <button type="button" class="btn btn-primary" th:onclick="" >글수정</button>
                 <button type="button" class="btn btn-danger" onclick="location.href=''">글삭제</button>
             </div>
-        </th:block>
+
+            <div class="mb-3">
+                <label for="reply" class="form-label">댓글 작성</label>
+                <textarea class="form-control" id="reply" rows="3" name="replycontent"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="replycontent" class="form-label">작성자</label>
+                <input type="text" class="form-control" id="replycontent" name="title" readonly>
+            </div>
+
 
     </div>
     <div class="col-4"></div>

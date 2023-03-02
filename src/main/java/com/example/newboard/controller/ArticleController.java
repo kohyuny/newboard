@@ -29,7 +29,7 @@ public class ArticleController {
     public String register(){
         return "register";
     }
-    @GetMapping("/edit")
+    @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id")int id, Model model){
         model.addAttribute("articleDTO", articleService.selectOne(id));
         return "edit";
@@ -42,11 +42,11 @@ public class ArticleController {
     @PostMapping("/register")
     public String register(ArticleDTO articleDTO){
         articleService.insert(articleDTO);
-        return "redirect:list";
+        return "redirect:/list";
     }
     @PostMapping("/edit")
     public String edit(ArticleDTO articleDTO){
         articleService.update(articleDTO);
-        return "redirect:detail"+articleDTO.getId();
+        return "redirect:/detail/"+articleDTO.getId();
     }
 }

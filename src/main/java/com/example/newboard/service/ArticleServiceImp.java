@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,12 +31,15 @@ public class ArticleServiceImp implements ArticleService{
 
     @Override
     public ArticleDTO selectOne(int id) {
-        return modelMappeer.map(articleMapper.selectOne(id), ArticleDTO.class);
+        Article article = articleMapper.selectOne(id);
+        article.setCnt(article.getCnt()+1);
+        articleMapper.update(article);
+        return modelMappeer.map(article, ArticleDTO.class);
     }
 
     @Override
     public int insert(ArticleDTO articleDTO) {
-
+        articleDTO.setRegdate(LocalDate.now());
         int result = articleMapper.insert(modelMappeer.map(articleDTO, Article.class));
 
 
@@ -44,6 +48,7 @@ public class ArticleServiceImp implements ArticleService{
 
     @Override
     public int update(ArticleDTO articleDTO) {
+        articleDTO.setModdate(LocalDate.now());
         int result = articleMapper.update(modelMappeer.map(articleDTO, Article.class));
         return !(result>0)? 0 : 1;
     }
