@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.newboard.mapper.ArticleMapper">
+    <select id="selectAllForPaging">
+        select * from article
+        <include refid="search"></include>
+        order by id desc
+        limit #{skip}, #{size}
+    </select>
+    
+    <select id="getCount">
+        select count(id) from article
+        <include refid="search"></include>
+    </select>
+    
+    <sql id="search">
+        <where>
+            <if test="keyword !=null and type == 'tilte'.toString()">
+                title like concat('%',#{keyword}, '%')
+            </if> 
+            <if test="keyword !=null and type == 'content'.toString()">
+                content like concat('%',#{keyword}, '%')
+            </if>
+        </where>
+    </sql>
+</mapper>

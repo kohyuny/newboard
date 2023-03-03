@@ -25,8 +25,8 @@
             <tbody>
             <th:block th:each="list: ${list}">
                 <tr>
-                    <td><span th:text="${list.id}"></span></td>
-                    <td><a th:href="@{|/detail/${list.id}|}"><span th:text="${list.title}"></span></a> </td>
+                    <td th:text="${list.id}"></td>
+                    <td><a th:href="@{|/detail/${list.id}|}"><span th:text="${list.title}"></span></a></td>
                     <td><span th:text="${list.userid}"></span></td>
                     <td><span th:text="${list.cnt}"></span></td>
                 </tr>

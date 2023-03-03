@@ -38,18 +38,35 @@
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content" readonly th:text="${articleDTO.content}"></textarea>
             </div>
             <div class="d-flex justify-content-end grid gap-3">
-                <button type="button" class="btn btn-primary" th:onclick="" >글수정</button>
-                <button type="button" class="btn btn-danger" onclick="location.href=''">글삭제</button>
+                <a class="btn btn-primary" th:href="@{|/edit/${articleDTO.id}|}" >글수정</a>
+                <a class="btn btn-primary" th:href="@{|/delete/${articleDTO.id}|}" >글삭제</a>
             </div>
+            <form th:action="@{/replyregister}" th:method="post">
+                <div class="mb-3 row">
+                    <div class="col-sm-10">
+                    <label for="reply" class="form-label">댓글 작성</label>
+                    <textarea class="form-control" id="reply" rows="3" name="content"></textarea>
+                    </div>
+                    <div class="col-sm-2 d-flex justify-content-center align-items-center">
+                        <button type="submit" class="btn btn-primary " >등록</button>
+                    </div>
+                </div>
+                <input type="hidden" name="id" th:value="${articleDTO.id}">
+            </form>
+            <th:block th:each="listreply : ${listreply}">
+                <div class="mb-3 row">
+                    <div class="col-sm-9">
+                    <label for="replycontent" class="form-label" th:value="${listreply.userid}"></label>
+                    <input type="text" class="form-control" id="replycontent" th:value="${listreply.content}" readonly>
+                    </div>
+                    <div class="col-sm-3 d-flex justify-content-end align-items-center">
+                        <a class="btn btn-primary " th:href="@{|/${listreply.id}/replydelete/${listreply.rid}|}">삭제하기</a>
+                    </div>
+                </div>
+            </th:block>
 
-            <div class="mb-3">
-                <label for="reply" class="form-label">댓글 작성</label>
-                <textarea class="form-control" id="reply" rows="3" name="replycontent"></textarea>
-            </div>
-            <div class="mb-3">
-                <label for="replycontent" class="form-label">작성자</label>
-                <input type="text" class="form-control" id="replycontent" name="title" readonly>
-            </div>
+
+
 
 
     </div>

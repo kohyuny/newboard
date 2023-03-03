@@ -57,6 +57,12 @@
             <artifactId>modelmapper</artifactId>
             <version>3.0.0</version>
         </dependency>
+        <!--        Request로 받는 값들을 검증을 하기 위한 lib-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+            <version>3.0.1</version>
+        </dependency>
     </dependencies>
 
     <build>

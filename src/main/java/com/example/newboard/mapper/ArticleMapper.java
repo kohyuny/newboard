@@ -1,5 +1,6 @@
 package com.example.newboard.mapper;
 
+import com.example.newboard.DTO.PageRequestDTO;
 import com.example.newboard.entity.Article;
 import org.apache.ibatis.annotations.*;
 
@@ -16,8 +17,12 @@ public interface ArticleMapper {
     @Options(useGeneratedKeys = true, keyProperty = "id")
     int insert(@Param("article")Article article);
     @Update("update article set userid = #{article.userid}, title = #{article.title}, " +
-            "content= #{article.content}, regdate = #{article.regdate}, cnt = #{article.cnt} where id = #{article.id}")
+            "content= #{article.content}, moddate = #{article.moddate}, cnt = #{article.cnt} where id = #{article.id}")
     int update(@Param("article")Article article);
     @Delete("delete from article where id = #{id}")
     int delete(int id);
+
+    List<Article> selectAllForPaging(PageRequestDTO pageRequestDTO);
+    int getCount(PageRequestDTO pageRequestDTO);
+
 }

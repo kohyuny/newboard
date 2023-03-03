@@ -1,6 +1,8 @@
 package com.example.newboard.service;
 
 import com.example.newboard.DTO.ArticleDTO;
+import com.example.newboard.DTO.PageRequestDTO;
+import com.example.newboard.DTO.PageResponseDTO;
 import com.example.newboard.entity.Article;
 import com.example.newboard.mapper.ArticleMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -58,5 +60,18 @@ public class ArticleServiceImp implements ArticleService{
 
         int result = articleMapper.delete(id);
         return !(result>0)? 0 : 1;
+    }
+
+    @Override
+    public PageResponseDTO<Article> selectAllForPaging(PageRequestDTO pageRequestDTO) {
+        List<Article> articleList = articleMapper.selectAllForPaging(pageRequestDTO);
+        int count = articleMapper.getCount(pageRequestDTO);
+        PageResponseDTO<Article> pageResponseDTO = PageResponseDTO.<Article>withAll()
+                .total(count)
+                .dtoList(articleList)
+                .pageRequestDTO(pageRequestDTO)
+                .build();
+
+        return pageResponseDTO;
     }
 }
