@@ -28,7 +28,7 @@ public class ArticleController {
 //        return "list";
 //    }
     @GetMapping("/list")
-    public String selectAll(@Valid PageRequestDTO pageRequestDTO, BindingResult bindingResult, Model model){
+    public String selectAll(@Valid PageRequestDTO pageRequestDTO, Model model){
         PageResponseDTO<Article> pageResponseDTO = articleService.selectAllForPaging(pageRequestDTO);
         model.addAttribute("list", pageResponseDTO);
         return "list";
