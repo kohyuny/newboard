@@ -13,6 +13,6 @@ public interface ArticleService {
     int insert(ArticleDTO articleDTO);
     int update(ArticleDTO articleDTO);
     int delete(int id);
-    PageResponseDTO<Article> selectAllForPaging (PageRequestDTO pageRequestDTO);
+    PageResponseDTO<ArticleDTO> selectAllForPaging (PageRequestDTO pageRequestDTO);
 
 }

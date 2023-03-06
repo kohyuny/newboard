@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.newboard.mapper.ArticleMapper">
+    <resultMap id="articleMap" type="Article">
+        <result property="id" column="id" />
+        <result property="userid" column="userid" />
+        <result property="content" column="content" />
+        <result property="title" column="title" />
+        <result property="regdate" column="regdate" />
+        <result property="moddate" column="moddate" />
+        <result property="cnt" column="cnt" />
+    </resultMap>
+    <select id="selectAllForPaging" resultMap="articleMap">
+        select * from article
+        <include refid="search"></include>
+        order by id desc
+        limit #{skip}, #{size}
+    </select>
+
+    <select id="getCount" resultType="int">
+        SELECT COUNT(*) FROM article
+        <include refid="search"></include>
+    </select>
+
+    <sql id="search">
+        <where>
+            <if test="keyword != null and type == 'title'.toString()">
+                title like concat('%',#{keyword},'%')
+            </if>
+            <if test="keyword != null and type == 'content'.toString()">
+                content like concat('%',#{keyword},'%')
+            </if>
+        </where>
+    </sql>
+</mapper>

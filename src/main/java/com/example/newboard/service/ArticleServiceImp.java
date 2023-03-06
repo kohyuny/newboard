@@ -63,12 +63,15 @@ public class ArticleServiceImp implements ArticleService{
     }
 
     @Override
-    public PageResponseDTO<Article> selectAllForPaging(PageRequestDTO pageRequestDTO) {
+    public PageResponseDTO<ArticleDTO> selectAllForPaging(PageRequestDTO pageRequestDTO) {
         List<Article> articleList = articleMapper.selectAllForPaging(pageRequestDTO);
+        List<ArticleDTO> list1 = articleList.stream()
+                .map(article-> modelMappeer.map(article, ArticleDTO.class))
+                .collect(Collectors.toList());
         int count = articleMapper.getCount(pageRequestDTO);
-        PageResponseDTO<Article> pageResponseDTO = PageResponseDTO.<Article>withAll()
+        PageResponseDTO<ArticleDTO> pageResponseDTO = PageResponseDTO.<ArticleDTO>withAll()
                 .total(count)
-                .dtoList(articleList)
+                .dtoList(list1)
                 .pageRequestDTO(pageRequestDTO)
                 .build();
 
