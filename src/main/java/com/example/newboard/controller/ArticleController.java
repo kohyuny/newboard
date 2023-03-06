@@ -7,6 +7,7 @@ import com.example.newboard.entity.Article;
 import com.example.newboard.service.ArticleService;
 import com.example.newboard.service.ReplyService;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
+@Slf4j
 public class ArticleController {
     @Autowired
     ArticleService articleService;
@@ -31,6 +33,9 @@ public class ArticleController {
     public String selectAll(PageRequestDTO pageRequestDTO, Model model){
         PageResponseDTO<ArticleDTO> pageResponseDTO = articleService.selectAllForPaging(pageRequestDTO);
         model.addAttribute("list", pageResponseDTO);
+        log.info(String.valueOf(pageRequestDTO.toString()));
+
+        log.info(String.valueOf(pageResponseDTO.toString()));
         return "list";
     }
     @GetMapping("/detail/{id}")
