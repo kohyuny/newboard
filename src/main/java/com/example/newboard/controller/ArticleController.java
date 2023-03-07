@@ -31,11 +31,12 @@ public class ArticleController {
 //    }
     @GetMapping("/list")
     public String selectAll(PageRequestDTO pageRequestDTO, Model model){
+        log.info(String.valueOf(pageRequestDTO.getPage()));
         PageResponseDTO<ArticleDTO> pageResponseDTO = articleService.selectAllForPaging(pageRequestDTO);
         model.addAttribute("list", pageResponseDTO);
         log.info(String.valueOf(pageRequestDTO.toString()));
-
-        log.info(String.valueOf(pageResponseDTO.toString()));
+        log.info(String.valueOf(pageResponseDTO.getStart()));
+        log.info(String.valueOf(pageResponseDTO.getEnd()));
         return "list";
     }
     @GetMapping("/detail/{id}")

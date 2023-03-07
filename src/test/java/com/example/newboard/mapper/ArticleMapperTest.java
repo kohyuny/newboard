@@ -1,6 +1,7 @@
 package com.example.newboard.mapper;
 
 import com.example.newboard.DTO.PageRequestDTO;
+import com.example.newboard.DTO.PageResponseDTO;
 import com.example.newboard.entity.Article;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -18,13 +19,22 @@ class ArticleMapperTest {
     @Test
     void selectAllForPaging() {
 
-        PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+//        PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+//
+//                .build();
+//
+//        List<Article> articleList =articleMapper.selectAllForPaging(pageRequestDTO);
+//        articleList.forEach(article -> log.info(String.valueOf(article)));
 
-                .build();
+        int end = (int) (Math.ceil(1 / 10.0)) * 10;
 
-        List<Article> articleList =articleMapper.selectAllForPaging(pageRequestDTO);
-        articleList.forEach(article -> log.info(String.valueOf(article)));
 
+//        int last = (int) (Math.ceil(total/ (double)size));
+//
+//        this.end = end > last ? last : end;
+
+//        log.info(String.valueOf(start));
+        log.info(String.valueOf(end));
     }
 
 

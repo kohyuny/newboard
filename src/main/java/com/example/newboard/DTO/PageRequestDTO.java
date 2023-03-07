@@ -28,6 +28,6 @@ public class PageRequestDTO {
     private String finished;
     private int id;
     public int getSkip(){
-        return (page-1) *10;
+        return (page -1) * 10;
     }
 }

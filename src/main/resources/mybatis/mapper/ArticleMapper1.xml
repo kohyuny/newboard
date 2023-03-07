@@ -21,7 +21,7 @@
     </select>
 
     <select id="getCount" resultType="int">
-        SELECT COUNT(*) FROM article
+        SELECT COUNT(id) FROM article
         <include refid="search"></include>
     </select>
 
